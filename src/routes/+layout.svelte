@@ -6,7 +6,7 @@
 	import '../app.postcss';
 	import { AppShell, AppBar, AppRail, AppRailTile, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 
-	let valueSingle: string = 'books';
+	let valueSingle: string = 'products';
 </script>
 
 <!-- App Shell -->
@@ -50,10 +50,11 @@
 		<!-- Hidden below Tailwind's large breakpoint -->
 		<div id="sidebar-left" class="hidden lg:block">
 			<ListBox>
-	<ListBoxItem bind:group={valueSingle} name="medium" value="books">Books</ListBoxItem>
-	<ListBoxItem bind:group={valueSingle} name="medium" value="movies">Movies</ListBoxItem>
-	<ListBoxItem bind:group={valueSingle} name="medium" value="tv">TV</ListBoxItem>
-</ListBox>
+				<ListBoxItem bind:group={valueSingle} name="medium" value="products">Products</ListBoxItem>
+				<ListBoxItem bind:group={valueSingle} name="medium" value="collections">Collections</ListBoxItem>
+				<!-- <ListBoxItem bind:group={valueSingle} name="medium" value="movies">Movies</ListBoxItem>
+				<ListBoxItem bind:group={valueSingle} name="medium" value="tv">TV</ListBoxItem> -->
+			</ListBox>
 
 		</div>
 	</svelte:fragment>

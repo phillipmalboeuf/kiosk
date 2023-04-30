@@ -5,8 +5,10 @@
 
 	import '../app.postcss';
 	import { AppShell, AppBar, AppRail, AppRailTile, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
+  
+	import type { LayoutData } from './$types'
 
-	let valueSingle: string = 'products';
+	export let data: LayoutData;
 </script>
 
 <!-- App Shell -->
@@ -15,7 +17,7 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl">Kioskberry</strong>
+				<a href="/"><strong class="text-xl">Kioskberry</strong></a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<!-- <a
@@ -50,8 +52,13 @@
 		<!-- Hidden below Tailwind's large breakpoint -->
 		<div id="sidebar-left" class="hidden lg:block">
 			<ListBox>
-				<ListBoxItem bind:group={valueSingle} name="medium" value="products">Products</ListBoxItem>
-				<ListBoxItem bind:group={valueSingle} name="medium" value="collections">Collections</ListBoxItem>
+				{#each data.collections as collection}
+				<a href="/collections/{collection.slug}">
+				<ListBoxItem bind:group={data.slug} name="medium" value={collection.slug}>
+					{collection.title.en}
+				</ListBoxItem>
+				</a>
+				{/each}
 				<!-- <ListBoxItem bind:group={valueSingle} name="medium" value="movies">Movies</ListBoxItem>
 				<ListBoxItem bind:group={valueSingle} name="medium" value="tv">TV</ListBoxItem> -->
 			</ListBox>

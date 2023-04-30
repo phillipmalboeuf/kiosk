@@ -10,4 +10,10 @@ datasource db {
 model products {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   title  String
+  price  Float
+}
+
+model collections {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  title  String
 }

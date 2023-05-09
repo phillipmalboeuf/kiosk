@@ -7,6 +7,7 @@
 	import { AppShell, AppBar, AppRail, AppRailTile, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
   
 	import type { LayoutData } from './$types'
+    import { page } from '$app/stores';
 
 	export let data: LayoutData;
 </script>
@@ -52,6 +53,11 @@
 		<!-- Hidden below Tailwind's large breakpoint -->
 		<div id="sidebar-left" class="hidden lg:block">
 			<ListBox>
+				<!-- <a href="/">
+					<ListBoxItem bind:group={data.slug} name="medium" value={'dashboard'}>
+						Dashboard
+					</ListBoxItem>
+				</a> -->
 				{#each data.collections as collection}
 				<a href="/collections/{collection.slug}">
 				<ListBoxItem bind:group={data.slug} name="medium" value={collection.slug}>
@@ -67,4 +73,42 @@
 	</svelte:fragment>
 
 	<slot />
+
+	
+	<svelte:fragment slot="sidebarRight">
+		{#if $page.data.item}
+		<div class="container mx-auto p-8 space-y-8">
+			<div class="card variant-soft-secondary">
+				<div class="card-header">
+					<div class="btn-group btn-group-sm variant-ghost">
+						<button>Create new</button>
+						<button>Duplicate</button>
+						<button>Delete</button>
+					</div>
+				</div>
+				<div class="p-4">
+					<button class="btn variant-filled" form={`edit-${$page.data.item.id}`} type="submit">Save {$page.data.collection.title.en}</button>
+				</div>
+				<!-- <div class="card-footer">
+					{JSON.stringify($page.data.item)}
+				</div> -->
+
+			</div>
+			
+		</div>
+		{/if}
+	</svelte:fragment>
+
+
+	<svelte:fragment slot="pageFooter">
+		<div class="container mx-auto p-8 space-y-8">
+			<ol class="breadcrumb">
+				<li class="crumb"><a class="anchor" href="/">Home</a></li>
+				<li class="crumb-separator" aria-hidden>|</li>
+				<li class="crumb"><a class="anchor" href="/blog">Blog</a></li>
+				<li class="crumb-separator" aria-hidden>|</li>
+				<li><a class="anchor" href="/contact">Contact</a></li>
+			</ol>
+		</div>
+	</svelte:fragment>
 </AppShell>
